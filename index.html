@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pet Desk v0.1.0</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main id="stage" aria-label="desktop pet">
+      <div id="pet-shell">
+        <video id="pet-video" autoplay muted playsinline></video>
+      </div>
+      <div id="speech-bubble" class="hidden" role="status" aria-live="polite">
+        <span class="bubble-text"></span>
+      </div>
+      <div id="tease-toy" class="hidden" aria-hidden="true">🪶</div>
+
+      <nav id="pet-menu" class="hidden" aria-label="pet actions">
+        <button type="button" data-action="play">逗猫</button>
+        <button type="button" data-action="eat">喂食</button>
+        <button type="button" data-action="drink">喝水</button>
+        <button type="button" data-action="touch">摸摸头</button>
+        <button type="button" data-action="happy">摸肚皮</button>
+        <button type="button" data-action="sleep">睡觉</button>
+        <button type="button" data-action="walk">散步</button>
+        <button type="button" data-action="settings">设置</button>
+        <button type="button" data-action="quit">退出</button>
+      </nav>
+    </main>
+
+    <script src="./renderer.js"></script>
+  </body>
+</html>

@@ -1,0 +1,281 @@
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: transparent;
+  user-select: none;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+}
+
+body {
+  font-family: "Nunito", "Comic Sans MS", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --cat-scale: 0.55;
+  --bubble-scale: 1;
+  --pet-stage-width: 520px;
+  --pet-stage-height: 620px;
+}
+
+button {
+  font: inherit;
+}
+
+#stage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+}
+
+#pet-shell {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: var(--pet-stage-width);
+  height: var(--pet-stage-height);
+  display: grid;
+  place-items: center;
+  cursor: grab;
+  transform: scale(var(--cat-scale));
+  transform-origin: center center;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+}
+
+#pet-shell:active {
+  cursor: grabbing;
+}
+
+#pet-shell.facing-right {
+  transform: scale(var(--cat-scale)) scaleX(-1);
+}
+
+#pet-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  background: transparent;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+  pointer-events: auto;
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+}
+
+#pet-video.fading {
+  opacity: 0;
+}
+
+#pet-video.clicked {
+  transform: scale(0.98);
+}
+
+#speech-bubble {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  top: auto;
+  bottom: calc(50% + (var(--pet-stage-height) * var(--cat-scale) / 2) - 118px);
+  max-width: 240px;
+  padding: 11px 17px;
+  border: 2px solid rgba(255, 187, 214, 0.72);
+  border-radius: 22px 22px 20px 20px;
+  color: #4d2f3f;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 238, 248, 0.86));
+  box-shadow:
+    0 6px 18px rgba(80, 46, 68, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(12px);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1.35;
+  text-align: center;
+  letter-spacing: 0;
+  transform: translateX(-50%) scale(var(--bubble-scale));
+  transform-origin: center bottom;
+  pointer-events: auto;
+}
+
+#speech-bubble::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -7px;
+  width: 14px;
+  height: 14px;
+  border-right: 2px solid rgba(255, 187, 214, 0.62);
+  border-bottom: 2px solid rgba(255, 187, 214, 0.62);
+  background: rgba(255, 238, 248, 0.88);
+  transform: translateX(-50%) rotate(45deg);
+  box-shadow: 4px 4px 10px rgba(80, 46, 68, 0.08);
+}
+
+#speech-bubble.hidden {
+  display: none;
+}
+
+#tease-toy {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  top: 50%;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 27px;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.18);
+  transform: translate(-30%, -80%) rotate(-18deg);
+  pointer-events: none;
+}
+
+#tease-toy.hidden {
+  display: none;
+}
+
+#pet-menu {
+  position: absolute;
+  z-index: 5;
+  left: 222px;
+  top: 72px;
+  width: 176px;
+  height: 286px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  transform-origin: 0% 50%;
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s ease;
+  pointer-events: none;
+}
+
+#pet-menu.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0.72);
+}
+
+#pet-menu button {
+  position: absolute;
+  width: 62px;
+  height: 54px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 999px;
+  color: #33263a;
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: 0 0 0 2px rgba(255, 224, 142, 0.82), 0 4px 12px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  font-family: "Nunito", "Comic Sans MS", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-shadow:
+    0 1px 1px rgba(255, 255, 255, 0.7),
+    0 0 4px rgba(255, 255, 255, 0.45);
+  pointer-events: auto;
+  transition:
+    background 0.16s ease,
+    filter 0.16s ease,
+    box-shadow 0.16s ease,
+    transform 0.16s ease;
+}
+
+#pet-menu button:hover {
+  background: rgba(255, 255, 255, 0.7);
+  filter: brightness(1.04);
+  transform: scale(1.08);
+}
+
+#pet-menu button:active {
+  transform: scale(1.02);
+}
+
+#pet-menu button:nth-child(1) {
+  left: 0;
+  top: 96px;
+  box-shadow: 0 0 0 2px rgba(255, 224, 142, 0.9), 0 4px 12px rgba(0, 0, 0, 0.18), 0 0 18px rgba(255, 238, 168, 0.3);
+}
+
+#pet-menu button:nth-child(2) {
+  left: 18px;
+  top: 34px;
+  box-shadow: 0 0 0 2px rgba(255, 190, 126, 0.9), 0 4px 12px rgba(0, 0, 0, 0.18), 0 0 18px rgba(255, 216, 170, 0.3);
+}
+
+#pet-menu button:nth-child(3) {
+  left: 72px;
+  top: 8px;
+  box-shadow: 0 0 0 2px rgba(150, 215, 255, 0.9), 0 4px 12px rgba(0, 0, 0, 0.18), 0 0 18px rgba(190, 230, 255, 0.3);
+}
+
+#pet-menu button:nth-child(4) {
+  left: 94px;
+  top: 66px;
+  box-shadow: 0 0 0 2px rgba(255, 185, 218, 0.9), 0 4px 12px rgba(0, 0, 0, 0.18), 0 0 18px rgba(255, 205, 230, 0.3);
+}
+
+#pet-menu button:nth-child(5) {
+  left: 94px;
+  top: 130px;
+  box-shadow: 0 0 0 2px rgba(202, 180, 255, 0.9), 0 4px 12px rgba(0, 0, 0, 0.18), 0 0 18px rgba(222, 206, 255, 0.3);
+}
+
+#pet-menu button:nth-child(6) {
+  left: 54px;
+  top: 188px;
+  box-shadow: 0 0 0 2px rgba(158, 164, 255, 0.9), 0 4px 12px rgba(0, 0, 0, 0.18), 0 0 18px rgba(190, 196, 255, 0.3);
+}
+
+#pet-menu button:nth-child(7) {
+  left: 8px;
+  top: 156px;
+  box-shadow: 0 0 0 2px rgba(174, 226, 158, 0.9), 0 4px 12px rgba(0, 0, 0, 0.18), 0 0 18px rgba(205, 240, 194, 0.3);
+}
+
+#pet-menu button:nth-child(8) {
+  left: 104px;
+  top: 190px;
+  box-shadow: 0 0 0 2px rgba(175, 194, 215, 0.9), 0 4px 12px rgba(0, 0, 0, 0.18), 0 0 18px rgba(200, 216, 232, 0.3);
+}
+
+#pet-menu button:nth-child(9) {
+  left: 116px;
+  top: 236px;
+  width: 44px;
+  height: 38px;
+  font-size: 12px;
+  opacity: 0.72;
+  background: rgba(255, 255, 255, 0.48);
+  box-shadow: 0 0 0 2px rgba(180, 180, 190, 0.72), 0 4px 12px rgba(0, 0, 0, 0.16);
+}

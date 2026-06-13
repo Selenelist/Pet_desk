@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pet Desk v0.1.0 Settings</title>
+    <link rel="stylesheet" href="./settings.css" />
+  </head>
+  <body>
+    <section id="settings-panel" aria-label="pet settings">
+      <header>
+        <h2>小猫设置</h2>
+        <button type="button" id="settings-close" aria-label="关闭设置">×</button>
+      </header>
+
+      <label class="setting-row">
+        <span>宠物大小</span>
+          <output id="scale-value">0.55x</output>
+          <input id="scale-slider" type="range" min="0.25" max="1.0" step="0.05" value="0.55" />
+      </label>
+      <button type="button" id="scale-reset">重置大小</button>
+
+      <div class="reminder-group">
+        <h3>休息提醒</h3>
+        <label class="setting-row">
+          <span>提醒间隔</span>
+          <select id="rest-reminder-select">
+            <option value="0">关闭</option>
+            <option value="30000">30 秒测试</option>
+            <option value="900000">15 分钟</option>
+            <option value="1800000">30 分钟</option>
+            <option value="2700000">45 分钟</option>
+            <option value="3600000">60 分钟</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="status-group">
+        <h3>小猫状态</h3>
+        <div class="status-line" data-stat="mood">
+          <span>心情</span>
+          <meter min="0" max="100" value="80"></meter>
+          <strong>80</strong>
+        </div>
+        <div class="status-line" data-stat="fullness">
+          <span>饱腹</span>
+          <meter min="0" max="100" value="80"></meter>
+          <strong>80</strong>
+        </div>
+        <div class="status-line" data-stat="hydration">
+          <span>水分</span>
+          <meter min="0" max="100" value="80"></meter>
+          <strong>80</strong>
+        </div>
+        <div class="status-line" data-stat="energy">
+          <span>精力</span>
+          <meter min="0" max="100" value="80"></meter>
+          <strong>80</strong>
+        </div>
+      </div>
+    </section>
+
+    <script src="./settings.js"></script>
+  </body>
+</html>

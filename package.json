@@ -1,0 +1,54 @@
+{
+  "name": "pet-desk",
+  "version": "0.1.0",
+  "description": "Cross-platform Electron desktop cat pet MVP.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --mac"
+  },
+  "keywords": [
+    "electron",
+    "desktop-pet",
+    "cat"
+  ],
+  "author": "",
+  "license": "MIT",
+  "build": {
+    "appId": "com.petdesk.app",
+    "productName": "Pet Desk v0.1.0",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "renderer.js",
+      "index.html",
+      "style.css",
+      "settings.html",
+      "settings.css",
+      "settings.js",
+      "assets/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.lifestyle"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "assets/icon.ico"
+    }
+  },
+  "devDependencies": {
+    "electron": "^31.7.7",
+    "electron-builder": "^26.15.3"
+  }
+}

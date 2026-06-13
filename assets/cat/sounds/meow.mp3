@@ -1,0 +1,4 @@
+// 由于无法直接创建二进制音频文件，我将在renderer.js中使用Web Audio API生成喵喵叫音效
+// 以下是Base64编码的简单喵喵叫音效数据
+
+// 这个文件将由renderer.js中的playMeowSound函数使用Web Audio API生成音效
